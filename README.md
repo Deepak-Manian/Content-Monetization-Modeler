@@ -66,8 +66,8 @@ content-monetization-modeler/
 │
 ├── README.md                          # Project documentation
 ├── youtube_ad_revenue_dataset.csv     # Dataset
-├── content_yt.ipynb   # Main Jupyter notebook
-├── app_yt.py                   # Streamlit web application
+├── content_yt.ipynb                   # Main Jupyter notebook
+├── app_yt.py                          # Streamlit web application
 ├── linear_regression_model.pkl        # Trained model file
 └── requirements.txt                   # Python dependencies
 ```
