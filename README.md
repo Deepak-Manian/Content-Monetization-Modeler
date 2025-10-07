@@ -49,20 +49,14 @@ A machine learning project that predicts YouTube ad revenue based on video perfo
 
 ## 🚀 Installation & Setup
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/content-monetization-modeler.git
-   cd content-monetization-modeler
-   ```
-
-2. **Install required packages:**
+1. **Install required packages:**
    ```bash
    pip install pandas numpy scikit-learn matplotlib seaborn streamlit joblib
    ```
 
-3. **Run the Streamlit app:**
+2. **Run the Streamlit app:**
    ```bash
-   streamlit run streamlit_app.py
+   streamlit run app_yt.py
    ```
 
 ## 📁 Project Structure
@@ -72,8 +66,8 @@ content-monetization-modeler/
 │
 ├── README.md                          # Project documentation
 ├── youtube_ad_revenue_dataset.csv     # Dataset
-├── content_monetization_model.ipynb   # Main Jupyter notebook
-├── streamlit_app.py                   # Streamlit web application
+├── content_yt.ipynb   # Main Jupyter notebook
+├── app_yt.py                   # Streamlit web application
 ├── linear_regression_model.pkl        # Trained model file
 └── requirements.txt                   # Python dependencies
 ```
@@ -190,8 +184,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**  
 Data Science Student at GUVI  
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/deepak-manian/)
 
 ---
 
