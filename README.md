@@ -9,7 +9,7 @@ A machine learning project that predicts YouTube ad revenue based on video perfo
 
 ## 🏆 Key Results
 
-- **Best Model:** Lasso Regression with **R² = 0.9526** and **RMSE = 13.47**
+- **Best Model:** Linear Regression with **R² = 0.9526** and **RMSE = 13.47**
 - **Dataset Size:** ~122,000 rows of YouTube video performance data
 - **Model Accuracy:** All top 3 models achieved >95% R² score
 - **Interactive App:** Fully functional Streamlit application for real-time predictions
@@ -137,14 +137,6 @@ The interactive web application includes:
 - **Web Development:** Streamlit app development
 - **Model Deployment:** Model persistence and loading for production use
 
-## 🔮 Future Improvements
-
-- [ ] Implement advanced feature engineering techniques
-- [ ] Add cross-validation for robust model evaluation
-- [ ] Include time-series analysis for temporal patterns
-- [ ] Expand the Streamlit app with data visualization dashboards
-- [ ] Deploy the application to cloud platforms (Heroku, AWS, etc.)
-- [ ] Add model explainability features (SHAP, LIME)
 
 ## 📝 Usage Example
 
