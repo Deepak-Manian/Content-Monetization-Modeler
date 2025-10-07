@@ -184,7 +184,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Your Name**  
 Data Science Student at GUVI  
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/deepak-manian/)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/deepak-manian/)
 
 ---
 
