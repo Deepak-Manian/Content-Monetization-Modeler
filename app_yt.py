@@ -1,19 +1,15 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-import seaborn as sns
+import joblib
+import os
 
-# ---------- Streamlit Page Config ----------
 st.set_page_config(
     page_title="Content Monetization Modeler",
     layout="wide",
     page_icon="💰"
 )
 
-# ---------- Custom Dark Theme Styling ----------
 st.markdown("""
     <style>
     body {background-color:#0e1117; color:#fff;}
@@ -25,53 +21,50 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ---------- Load Data ----------
-DATA_PATH = 'I:/Project/youtube_ad_revenue_dataset.csv'  # Change if needed
-df = pd.read_csv(DATA_PATH)
-
-# Select numeric columns & handle missing values
-numeric_df = df.select_dtypes(include=np.number)
-numeric_df = numeric_df.fillna(numeric_df.mean())
-
-# ---------- UI ----------
 st.title("🔮 Predict YouTube Ad Revenue")
 
-target_col = 'ad_revenue_usd'
+MODEL_PATH = 'I:/Project/linear_regression_model.pkl'
 
-if target_col not in numeric_df.columns:
-    st.warning(f"❌ Target column '{target_col}' not found in dataset.")
-else:
-    st.subheader("📥 Enter Video Feature Values")
+if not os.path.exists(MODEL_PATH):
+    st.error(" Model file not found. Please check the path.")
+    st.stop()
 
-    feature_cols = numeric_df.columns.drop(target_col)
-    input_data = {}
+model = joblib.load(MODEL_PATH)
 
-    # Optional: Create columns layout for cleaner UI
-    cols_per_row = 3
-    rows = (len(feature_cols) + cols_per_row - 1) // cols_per_row
+feature_cols = [
+    'video_duration_minutes',
+    'views',
+    'likes',
+    'comments',
+    'subscribers_gained',
+    'avg_view_duration_seconds'
+]
 
-    for i in range(rows):
-        cols = st.columns(cols_per_row)
-        for j in range(cols_per_row):
-            idx = i * cols_per_row + j
-            if idx < len(feature_cols):
-                col_name = feature_cols[idx]
-                mean_val = float(numeric_df[col_name].mean())
-                input_data[col_name] = cols[j].number_input(f"{col_name}", value=mean_val)
+st.subheader(" Enter Video Feature Values")
 
-    # ---------- Prediction ----------
-    if st.button("🚀 Predict"):
-        X = numeric_df[feature_cols]
-        y = numeric_df[target_col]
+input_data = {}
+cols_per_row = 3
+rows = (len(feature_cols) + cols_per_row - 1) // cols_per_row
 
-        model = LinearRegression()
-        model.fit(X, y)
+for i in range(rows):
+    cols = st.columns(cols_per_row)
+    for j in range(cols_per_row):
+        idx = i * cols_per_row + j
+        if idx < len(feature_cols):
+            col_name = feature_cols[idx]
+            input_data[col_name] = cols[j].number_input(f"{col_name}", value=0.0)
 
-        input_df = pd.DataFrame([input_data])
-        pred = model.predict(input_df)[0]
-        pred = max(0, pred)  # Avoid negative revenue
 
-        st.success(f"💰 **Predicted Ad Revenue:** ${pred:,.2f}")
+if st.button("Predict"):
+    input_df = pd.DataFrame([input_data])
 
-        if pred == 0:
+    try:
+        prediction = model.predict(input_df)[0]
+        prediction = max(0, prediction)  
+        st.success(f"💰 **Predicted Ad Revenue:** ${prediction:,.2f}")
+
+        if prediction == 0:
             st.info("This video may not generate ad revenue based on the current input values.")
+
+    except Exception as e:
+        st.error(f"Prediction error: {str(e)}")
