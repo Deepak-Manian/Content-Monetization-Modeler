@@ -138,32 +138,6 @@ The interactive web application includes:
 - **Model Deployment:** Model persistence and loading for production use
 
 
-## 📝 Usage Example
-
-```python
-import joblib
-import pandas as pd
-
-# Load the trained model
-model = joblib.load('linear_regression_model.pkl')
-
-# Create sample input
-sample_data = {
-    'views': 10000,
-    'likes': 500,
-    'comments': 50,
-    'watch_time_minutes': 5000,
-    'video_length_minutes': 12,
-    'subscribers': 50000,
-    'engagement_rate': 0.055,
-    # ... other encoded features
-}
-
-# Make prediction
-prediction = model.predict(pd.DataFrame([sample_data]))
-print(f"Predicted Ad Revenue: ${prediction[0]:.2f}")
-```
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
